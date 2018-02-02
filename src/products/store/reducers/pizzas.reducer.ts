@@ -37,7 +37,7 @@ export function reducer(
         },
         {
         ...state.entities
-      })
+      });
       return {
         ...state,
         entities,
@@ -54,7 +54,6 @@ export function reducer(
       };
     }
   }
-
 
   return state;
 }
