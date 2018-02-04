@@ -7,13 +7,15 @@ import { PizzaState } from "./pizzas.reducer";
 export interface ToppingState {
   entities: {[id: number]: Topping},
   loaded: boolean,
-  loading: boolean
+  loading: boolean,
+  selectedToppings: number[]
 }
 
 export const initialState: ToppingState = {
   entities: {},
   loaded: false,
-  loading: false
+  loading: false,
+  selectedToppings: []
 };
 
 export function reducer(
@@ -21,6 +23,14 @@ export function reducer(
   action: fromToppings.ToppingsAction
 ): ToppingState {
   switch(action.type) {
+    case fromToppings.VISUALISE_TOPPINGS: {
+      const selectedToppings = action.payload;
+      return {
+        ...state,
+        selectedToppings
+      }
+    }
+
     case fromToppings.LOAD_TOPPINGS: {
       return {
         ...state,
@@ -65,3 +75,4 @@ export function reducer(
 export const getToppingsEntities = (state: ToppingState) => state.entities;
 export const getToppingsLoading = (state: ToppingState) => state.loading;
 export const getToppingsLoaded = (state: ToppingState) => state.loaded;
+export const getSelectedToppings = (state: ToppingState) => state.selectedToppings;
